@@ -1,0 +1,40 @@
+---
+import { t, type Lang } from '../i18n/utils';
+const { lang = 'es' as Lang } = Astro.props;
+---
+<section id="impacto" class="impact-section" aria-labelledby="impact-title">
+  <div class="impact-heading">
+    <div>
+      <p class="impact-eyebrow">{t(lang, 'impactEyebrow')}</p>
+      <h2 id="impact-title">{t(lang, 'impactTitle')}</h2>
+    </div>
+    <p class="impact-intro">{t(lang, 'impactIntro')}</p>
+  </div>
+  <div class="impact-grid">
+    <article class="impact-card">
+      <p class="impact-card-eyebrow">{t(lang, 'impactCost')}</p>
+      <p class="impact-value">{t(lang, 'impactCostValue')} <span>{t(lang, 'perDocument')}</span></p>
+      <p class="impact-description">{t(lang, 'impactCostDescription')}</p>
+      <footer class="impact-card-footer"><span>{t(lang, 'agents')}</span><strong>{t(lang, 'threeChained')}</strong></footer>
+    </article>
+    <article class="impact-card">
+      <p class="impact-card-eyebrow">{t(lang, 'impactInput')}</p>
+      <p class="impact-value">{t(lang, 'threeFormats')} <span>{t(lang, 'formats')}</span></p>
+      <p class="impact-description">{t(lang, 'impactInputDescription')}</p>
+      <footer class="impact-card-footer"><span>{t(lang, 'storage')}</span><strong>{t(lang, 'jsonb')}</strong></footer>
+    </article>
+    <article class="impact-card">
+      <p class="impact-card-eyebrow">{t(lang, 'impactDeployment')}</p>
+      <p class="impact-value">{t(lang, 'production')}</p>
+      <p class="impact-description">{t(lang, 'impactDeploymentDescription')}</p>
+      <footer class="impact-card-footer"><span>{t(lang, 'pipeline')}</span><strong>{t(lang, 'githubActions')}</strong></footer>
+    </article>
+    <!-- TODO: completar con medición real
+    <article class="impact-card">
+      <p class="impact-card-eyebrow">VELOCIDAD</p>
+      <p class="impact-value">X s <span>por documento</span></p>
+      <p class="impact-description">Tiempo medio de procesamiento de punta a punta.</p>
+    </article>
+    -->
+  </div>
+</section>

@@ -1,0 +1,20 @@
+---
+import { t, type Lang } from '../i18n/utils';
+import SocialIcon from './SocialIcon.astro';
+const { lang = 'es' as Lang } = Astro.props;
+---
+<footer class="site-footer">
+  <div class="site-footer-inner">
+    <div class="footer-copy">
+      <strong>{t(lang, 'footerPortfolio')}</strong>
+      <span>{t(lang, 'footerLocation')}</span>
+    </div>
+    <nav class="footer-links" aria-label="Enlaces del pie de página">
+      <a data-key="github" class="inline-flex items-center gap-2" href="https://github.com/ExcenGarrido" target="_blank" rel="noopener noreferrer"><SocialIcon name="github" />GitHub</a>
+      <a data-key="linkedin" class="inline-flex items-center gap-2" href="https://www.linkedin.com/in/pablo-agustin-garrido/" target="_blank" rel="noopener noreferrer"><SocialIcon name="linkedin" />LinkedIn</a>
+      <a data-key="email" class="inline-flex items-center gap-2" href="mailto:pabloagustingarrido@gmail.com"><SocialIcon name="email" />{t(lang, 'footerEmail')}</a>
+      <a data-key="cv" class="inline-flex items-center gap-2" href="/cv/cv-pablo-garrido-es.pdf" download="CV_Pablo_Garrido_Espanol.pdf"><SocialIcon name="cv" />{t(lang, 'cvSpanish')}</a>
+      <span>{t(lang, 'utc')}</span>
+    </nav>
+  </div>
+</footer>

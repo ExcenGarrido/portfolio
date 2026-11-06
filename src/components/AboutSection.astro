@@ -1,0 +1,73 @@
+---
+import { t, type Lang } from '../i18n/utils';
+const { lang = 'es' as Lang } = Astro.props;
+---
+<section id="sobre-mi" class="about-section" aria-labelledby="about-title">
+  <div class="about-heading">
+    <div>
+      <p class="about-eyebrow">{t(lang, 'aboutEyebrow')}</p>
+      <h2 id="about-title">{t(lang, 'aboutTitle')}</h2>
+    </div>
+    <p class="about-intro">{t(lang, 'aboutIntro')}</p>
+  </div>
+
+  <div class="principles-grid">
+    <article class="principle-card">
+      <span class="principle-number">01</span>
+      <h3>{t(lang, 'clearContracts')}</h3>
+      <p>{t(lang, 'clearContractsDescription')}</p>
+    </article>
+    <article class="principle-card">
+      <span class="principle-number">02</span>
+      <h3>{t(lang, 'traceability')}</h3>
+      <p>{t(lang, 'traceabilityDescription')}</p>
+    </article>
+    <article class="principle-card">
+      <span class="principle-number">03</span>
+      <h3>{t(lang, 'endToEnd')}</h3>
+      <p>{t(lang, 'endToEndDescription')}</p>
+    </article>
+    <article class="principle-card">
+      <span class="principle-number">04</span>
+      <h3>{t(lang, 'productionCicd')}</h3>
+      <p>{t(lang, 'productionCicdDescription')}</p>
+    </article>
+  </div>
+
+  <div class="about-columns">
+    <div>
+      <h3 class="about-subtitle">{t(lang, 'skills')}</h3>
+      <div class="skill-list">
+        <div class="skill-row"><span class="skill-label">{t(lang, 'skillsBackend')}</span><div class="skill-chips"><span>{t(lang, 'fastapi')}</span><span>{t(lang, 'pydantic')}</span><span>{t(lang, 'sqlAlchemy')}</span><span>{t(lang, 'rest')}</span><span>{t(lang, 'dotNet')}</span></div></div>
+        <div class="skill-row"><span class="skill-label">{t(lang, 'skillsData')}</span><div class="skill-chips"><span>{t(lang, 'postgresql')}</span><span>{t(lang, 'jsonbChip')}</span><span>{t(lang, 'sqlServer')}</span><span>{t(lang, 'mysqlMaria')}</span></div></div>
+        <div class="skill-row"><span class="skill-label">{t(lang, 'skillsInfrastructure')}</span><div class="skill-chips"><span>{t(lang, 'docker')}</span><span>{t(lang, 'azureAppService')}</span><span>{t(lang, 'gitHubActions')}</span><span>{t(lang, 'cicd')}</span><span>{t(lang, 'git')}</span></div></div>
+        <div class="skill-row"><span class="skill-label">{t(lang, 'skillsAi')}</span><div class="skill-chips"><span>{t(lang, 'groqApi')}</span><span>{t(lang, 'llms')}</span><span>{t(lang, 'chainedAgents')}</span><span>{t(lang, 'n8n')}</span></div></div>
+        <div class="skill-row"><span class="skill-label">{t(lang, 'skillsLanguages')}</span><div class="skill-chips"><span>{t(lang, 'python')}</span><span>{t(lang, 'cSharp')}</span><span>{t(lang, 'sql')}</span><span>{t(lang, 'php')}</span><span>{t(lang, 'javascript')}</span><span>{t(lang, 'html')}</span><span>{t(lang, 'css')}</span></div></div>
+        <div class="skill-row"><span class="skill-label">{t(lang, 'skillsMethodology')}</span><div class="skill-chips"><span>{t(lang, 'scrum')}</span><span>{t(lang, 'jira')}</span><span>{t(lang, 'git')}</span><span>{t(lang, 'github')}</span><span>{t(lang, 'userStories')}</span><span>{t(lang, 'acceptanceCriteria')}</span><span>{t(lang, 'miro')}</span></div></div>
+      </div>
+    </div>
+
+    <div class="about-details">
+      <h3 class="about-subtitle">{t(lang, 'education')}</h3>
+      <article class="education-card">
+        <h4>{t(lang, 'degree')}</h4>
+        <p>{t(lang, 'university')}</p>
+        <small>{t(lang, 'degreeAverage')}</small>
+        <a class="education-link" href="/documentos/estado-academico.pdf" target="_blank" rel="noopener noreferrer">{t(lang, 'academicRecord')} <span aria-hidden="true">→</span></a>
+      </article>
+
+      <h3 class="about-subtitle about-subtitle-spaced">{t(lang, 'certifications')}</h3>
+      <div class="about-list">
+        <div><a href="https://www.credly.com/badges/0065fdd0-bbe0-477a-a310-a3a7275b5f1b/linked_in_profile" target="_blank" rel="noopener noreferrer">IBM SkillsBuild Cybersecurity Certificate</a><span>IBM</span></div>
+        <div><a href="https://www.credly.com/badges/07a9665a-3ae9-48ab-bd2f-380385421934/public_url" target="_blank" rel="noopener noreferrer">{t(lang, 'certificationCcna')}</a><span>Cisco Networking Academy</span></div>
+        <div><a href="https://www.credly.com/badges/67e6996f-3bed-4ab7-8022-dc5f36f77fe6/linked_in_profile" target="_blank" rel="noopener noreferrer">{t(lang, 'certificationSrwe')}<br />2</a><span>Cisco Networking Academy</span></div>
+      </div>
+
+      <h3 class="about-subtitle about-subtitle-spaced">{t(lang, 'languages')}</h3>
+      <div class="about-list">
+        <div><span>{t(lang, 'spanish')}</span><span>{t(lang, 'nativeLevel')}</span></div>
+        <div><span>{t(lang, 'englishLanguage')}</span><span>{t(lang, 'b2')}</span></div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,38 @@
+---
+import { t, type Lang } from '../i18n/utils';
+const { lang = 'es' as Lang } = Astro.props;
+---
+<section id="enfoque" class="focus-section" aria-labelledby="focus-title">
+  <p class="focus-eyebrow">{t(lang, 'focusEyebrow')}</p>
+  <h2 id="focus-title">{t(lang, 'focusTitle')}</h2>
+  <p class="focus-intro">{t(lang, 'focusIntro')}</p>
+
+  <div class="focus-comparison">
+    <div class="focus-comparison-grid">
+      <article class="focus-state focus-state-before">
+        <p>{t(lang, 'impactBefore')}</p>
+        <h3>{t(lang, 'impactBeforeTitle')}</h3>
+        <span>{t(lang, 'impactBeforeDescription')}</span>
+      </article>
+      <article class="focus-state focus-state-after">
+        <p>{t(lang, 'impactAfter')}</p>
+        <h3>{t(lang, 'impactAfterTitle')}</h3>
+        <span>{t(lang, 'impactAfterDescription')}</span>
+      </article>
+    </div>
+  </div>
+
+  <div class="focus-applied">
+    <h3>{t(lang, 'focusApplied')}</h3>
+    <div class="focus-steps">
+      <p><strong>{t(lang, 'focusAppliedExtract')}:</strong> {t(lang, 'focusAppliedExtractDescription')}</p>
+      <p><strong>{t(lang, 'focusAppliedClean')}:</strong> {t(lang, 'focusAppliedCleanDescription')}</p>
+      <p><strong>{t(lang, 'focusAppliedPersist')}:</strong> {t(lang, 'focusAppliedPersistDescription')}</p>
+      <p><strong>{t(lang, 'focusAppliedAutomate')}:</strong> {t(lang, 'focusAppliedAutomateDescription')}</p>
+    </div>
+  </div>
+
+  <p class="focus-closing">{t(lang, 'focusClosing')} <strong>{t(lang, 'focusCostSuffix')}</strong>.</p>
+  <!-- TODO: pegar URL del post de LinkedIn -->
+  <a class="focus-link" href={lang === 'en' ? '/en/projects/procesamiento-documentos-ia/' : '/proyectos/procesamiento-documentos-ia/'}>{t(lang, 'projectLink')} →</a>
+</section>

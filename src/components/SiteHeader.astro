@@ -1,0 +1,47 @@
+---
+import { t, getAlternateUrl, type Lang } from '../i18n/utils';
+const { detailPage = false } = Astro.props;
+const { lang = 'es' } = Astro.props;
+const prefix = lang === 'en' ? '/en/' : '/';
+---
+<header class="site-header" data-detail-page={detailPage ? 'true' : 'false'}>
+  <a class="brand" href={`${prefix}#inicio`} aria-label="Pablo Dev Garrido, inicio"><strong>Pablo <em>Dev</em> Garrido</strong><span><i class="brand-separator" aria-hidden="true"></i><b>{t(lang, 'portfolio')}</b></span></a>
+  <button class="menu-button" aria-expanded="false" aria-controls="primary-nav">{t(lang as Lang, 'menu')} <span aria-hidden="true">↗</span></button>
+  <nav id="primary-nav" aria-label="Navegación principal">
+    <div class="nav-links"><a class="nav-link" href={`${prefix}#impacto`}>{t(lang, 'navImpact')}</a><a class="nav-link" href={`${prefix}#proyectos`}>{t(lang, 'navProjects')}</a><a class="nav-link" href={`${prefix}#enfoque`}>{t(lang, 'navApproach')}</a><a class="nav-link" href={`${prefix}#sobre-mi`}>{t(lang, 'navAbout')}</a><a class="nav-link" href={`${prefix}#contacto`}>{t(lang, 'navContact')}</a></div>
+    <div class="nav-actions">
+      <div class="language-switch" aria-label={t(lang, 'languageLabel')}>
+        <a href={getAlternateUrl(Astro.url, 'es')} lang="es" hreflang="es" aria-label={t(lang, 'spanishVersion')} aria-current={lang === 'es' ? 'true' : undefined}>ES</a>
+        <span aria-hidden="true">|</span>
+        <a href={getAlternateUrl(Astro.url, 'en')} lang="en" hreflang="en" aria-label={t(lang, 'englishVersion')} aria-current={lang === 'en' ? 'true' : undefined}>EN</a>
+      </div>
+      <a href={`${prefix}#contacto`} class="hero-button hero-button-secondary nav-talk rounded-full font-semibold transition">{t(lang, 'talk')} <span aria-hidden="true" class="btn-arrow">→</span></a>
+    </div>
+  </nav>
+</header>
+<script>
+  const header = document.querySelector('.site-header');
+  const button = document.querySelector('.menu-button');
+  const nav = document.querySelector('#primary-nav');
+  button?.addEventListener('click', () => { const open = button.getAttribute('aria-expanded') === 'true'; button.setAttribute('aria-expanded', String(!open)); nav?.classList.toggle('is-open', !open); });
+  nav?.querySelectorAll('a').forEach((link) => link.addEventListener('click', () => { button?.setAttribute('aria-expanded', 'false'); nav?.classList.remove('is-open'); }));
+
+  if (header?.getAttribute('data-detail-page') !== 'true') {
+    const sections = ['impacto', 'proyectos', 'enfoque', 'sobre-mi', 'contacto']
+      .map((id) => document.getElementById(id))
+      .filter((section): section is HTMLElement => section !== null);
+    const links = new Map(sections.map((section) => [section.id, nav?.querySelector(`a[href="#${section.id}"]`)]));
+    const observer = new IntersectionObserver((entries) => {
+      for (const entry of entries) {
+        const link = links.get(entry.target.id);
+        if (!link) continue;
+        if (entry.isIntersecting) {
+          links.forEach((candidate) => candidate?.removeAttribute('aria-current'));
+          link.setAttribute('aria-current', 'true');
+        }
+        else link.removeAttribute('aria-current');
+      }
+    }, { rootMargin: '-40% 0px -55% 0px' });
+    sections.forEach((section) => observer.observe(section));
+  }
+</script>

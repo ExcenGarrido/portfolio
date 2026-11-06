@@ -1,0 +1,22 @@
+---
+import ProjectDetail from '../../components/ProjectDetail.astro';
+import Layout from '../../layouts/Layout.astro';
+import { emptyProject, projectDetails, projectSlugs } from '../../data/projectDetails';
+
+export function getStaticPaths() {
+  return projectSlugs.map((slug) => ({
+    params: { slug },
+    props: { project: projectDetails[slug] ?? { ...emptyProject, slug } },
+  }));
+}
+
+const { project } = Astro.props;
+---
+
+<Layout
+  title={project.title ? `${project.title} · Pablo Garrido` : 'Detalle de proyecto · Pablo Dev Garrido'}
+  description={project.description || project.subtitle || 'Detalle de proyecto de Pablo Dev Garrido.'}
+  ogImage={project.media?.type === 'image' ? project.media.src : undefined}
+>
+  <ProjectDetail project={project} />
+</Layout>

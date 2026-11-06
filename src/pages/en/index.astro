@@ -1,0 +1,46 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import SiteHeader from '../../components/SiteHeader.astro';
+import ImpactSection from '../../components/ImpactSection.astro';
+import ProjectsSection from '../../components/ProjectsSection.astro';
+import FocusSection from '../../components/FocusSection.astro';
+import AboutSection from '../../components/AboutSection.astro';
+import ContactSection from '../../components/ContactSection.astro';
+import SiteFooter from '../../components/SiteFooter.astro';
+import SocialIcon from '../../components/SocialIcon.astro';
+import { t, type Lang } from '../../i18n/utils';
+const lang: Lang = 'en';
+---
+<Layout lang={lang}>
+  <SiteHeader lang={lang} />
+  <main id="inicio">
+    <section class="hero shell flex flex-col items-center px-6 pb-24 pt-20 text-center sm:pb-32 sm:pt-28">
+      <div class="hero-badge inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-gray-800 bg-[#0a0a0a]">
+        <span class="hero-status-dot w-2 h-2 rounded-full bg-green-500 animate-pulse shadow-[0_0_8px_rgba(34,197,94,0.8)]" aria-hidden="true"></span>
+        <span class="text-[11px] uppercase tracking-widest text-[#888888] font-medium">{t(lang, 'available')}</span>
+      </div>
+      <img class="hero-avatar mt-10 h-32 w-32 rounded-full object-cover" src="/images/yo.jfif" alt={t(lang, 'avatarAlt')} width="128" height="128" />
+      <h1 class="hero-title mt-8 max-w-3xl font-bold">Pablo <span>Dev</span> Garrido</h1>
+      <p class="hero-subtitle mt-4 text-base font-medium sm:text-lg">{t(lang, 'heroSubtitle')}</p>
+      <p class="hero-description mt-6 max-w-2xl sm:text-lg">{t(lang, 'heroDescription')}</p>
+      <div class="mt-9 flex flex-col items-center gap-3 sm:flex-row">
+        <a class="btn-primario" href="#proyectos">{t(lang, 'viewProjects')} <span aria-hidden="true" class="btn-arrow">→</span></a>
+        <a class="hero-button hero-button-secondary rounded-full px-6 py-3 text-sm font-semibold transition" href="#contacto">{t(lang, 'startConversation')}</a>
+      </div>
+      <div class="hero-socials">
+        <a data-key="linkedin" href="https://www.linkedin.com/in/pablo-agustin-garrido/" target="_blank" rel="noopener noreferrer"><SocialIcon name="linkedin" size={20} />LinkedIn</a>
+        <a data-key="github" href="https://github.com/ExcenGarrido" target="_blank" rel="noopener noreferrer"><SocialIcon name="github" size={20} />GitHub</a>
+        <a data-key="gitlab" href="https://gitlab.com/pabloagustingarrido" target="_blank" rel="noopener noreferrer"><SocialIcon name="gitlab" size={20} />GitLab</a>
+        <a data-key="email" href="mailto:pabloagustingarrido@gmail.com"><SocialIcon name="email" size={20} />{t(lang, 'email')}</a>
+        <a data-key="cv" href="/cv/cv-pablo-garrido-es.pdf" download="CV_Pablo_Garrido_Espanol.pdf"><SocialIcon name="cv" size={20} />{t(lang, 'cvSpanish')}</a>
+        <a data-key="cv" href="/cv/cv-pablo-garrido-en.pdf" download="CV_Pablo_Garrido_English.pdf"><SocialIcon name="cv" size={20} />{t(lang, 'cvEnglish')}</a>
+      </div>
+    </section>
+    <ImpactSection lang={lang} />
+    <ProjectsSection lang={lang} />
+    <FocusSection lang={lang} />
+    <AboutSection lang={lang} />
+    <ContactSection lang={lang} />
+  </main>
+  <SiteFooter lang={lang} />
+</Layout>

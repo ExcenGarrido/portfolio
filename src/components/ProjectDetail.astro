@@ -1,0 +1,145 @@
+---
+import SiteHeader from './SiteHeader.astro';
+import SiteFooter from './SiteFooter.astro';
+import type { ProjectDetail } from '../data/projectDetails';
+import { t, type Lang } from '../i18n/utils';
+
+interface Props {
+  project: ProjectDetail;
+  lang?: Lang;
+}
+
+const { project, lang = 'es' } = Astro.props;
+const homePrefix = lang === 'en' ? '/en/' : '/';
+const projectPrefix = lang === 'en' ? '/en/projects/' : '/proyectos/';
+---
+
+<SiteHeader detailPage lang={lang} />
+<main class="project-detail-shell">
+      <a class="project-detail-back" href={`${homePrefix}#proyectos`}>{t(lang, 'backToProjects')}</a>
+
+      <header class="project-detail-header">
+        {project.eyebrow && <p class="project-detail-eyebrow">{project.eyebrow}</p>}
+        <h1>{project.title || 'Detalle de proyecto'}</h1>
+        {project.subtitle && <p class="project-detail-subtitle">{project.subtitle}</p>}
+      </header>
+
+      {project.data.length > 0 && (
+        <div class="project-detail-data" aria-label="Datos del proyecto">
+          {project.data.map((item) => (
+            <div class="project-detail-data-cell">
+              <span>{t(lang, item.label === 'TIPO' ? 'projectType' : item.label === 'ROL' ? 'projectRole' : item.label === 'PERÍODO' ? 'projectPeriod' : 'projectStatus')}</span>
+              <strong>{item.value}</strong>
+            </div>
+          ))}
+        </div>
+      )}
+
+      {project.metrics.length > 0 && (
+        <div class="project-detail-metrics">
+          {project.metrics.slice(0, 2).map((metric) => (
+            <div class="project-detail-metric">
+              <strong>{metric.value}</strong>
+              <span>{metric.description}</span>
+            </div>
+          ))}
+        </div>
+      )}
+
+      <div class="project-detail-media">
+        {project.media?.type === 'image' && (
+          <img src={project.media.src} alt={project.media.alt} />
+        )}
+        {project.media?.type === 'video' && (
+          <video controls preload="metadata" playsinline poster={project.media.poster}>
+            <source src={project.media.src} />
+          </video>
+        )}
+        {project.media?.type === 'youtube' && (
+          <iframe src={project.media.src} title={project.media.title} loading="lazy" allowfullscreen></iframe>
+        )}
+        <div class:list={['project-detail-media-placeholder', { 'is-hidden': project.media }]} hidden={Boolean(project.media)}>
+          {t(lang, 'mediaPending')}
+        </div>
+      </div>
+      {project.mediaNote && <p class="project-detail-media-note">{project.mediaNote}</p>}
+
+      <div class="project-detail-body">
+        <aside class="project-detail-sidebar">
+          {project.sections.length > 0 && (
+            <>
+              <p class="project-detail-sidebar-label">{t(lang, 'inThisCase')}</p>
+              <nav aria-label="Secciones del caso">
+                {project.sections.map((section) => <a href={`#${section.id}`}>{section.title}</a>)}
+              </nav>
+            </>
+          )}
+          {project.stack.length > 0 && (
+            <>
+              <p class="project-detail-sidebar-label project-detail-stack-label">STACK</p>
+              <div class="project-detail-stack">
+                {project.stack.map((item) => <span>{item}</span>)}
+              </div>
+            </>
+          )}
+        </aside>
+
+        <div class="project-detail-content">
+          {project.sections.map((section) => (
+            <section id={section.id} class="project-detail-section">
+              <h2>{section.title}</h2>
+              {section.paragraphs?.map((paragraph) => <p set:html={paragraph} />)}
+              {section.items && (
+                <ul>
+                  {section.items.map((item) => <li set:html={item} />)}
+                </ul>
+              )}
+              {section.subsections?.map((subsection) => (
+                <div>
+                  <h3>{subsection.title}</h3>
+                  {subsection.paragraphs?.map((paragraph) => <p set:html={paragraph} />)}
+                  {subsection.items && <ul>{subsection.items.map((item) => <li set:html={item} />)}</ul>}
+                </div>
+              ))}
+              {section.id === 'lo-que-construi' && project.privateNote && <p class="project-detail-private-note">{lang === 'en' ? t(lang, 'privateRepository') : project.privateNote}</p>}
+              {section.id === 'lo-que-construi' && project.buttons.length > 0 && (
+                <div class="project-detail-buttons">
+                  {project.buttons.filter((button) => button.href && button.href !== '#').map((button) => (
+                    <a class:list={['project-detail-button', `is-${button.variant}`]} href={button.href} target="_blank" rel="noopener noreferrer">{button.label} <span aria-hidden="true">→</span></a>
+                  ))}
+                </div>
+              )}
+            </section>
+          ))}
+        </div>
+      </div>
+
+      {project.nextCase && (
+        <a class="project-detail-next" href={`${projectPrefix}${project.nextCase.slug}/`}>
+          <span>
+            <small>{t(lang, 'nextCase')}</small>
+            <strong>{project.nextCase.title}</strong>
+            <em>{project.nextCase.description}</em>
+          </span>
+          <b aria-hidden="true">→</b>
+        </a>
+      )}
+  </main>
+  <SiteFooter lang={lang} />
+  <script>
+      const sections = [...document.querySelectorAll('.project-detail-section')];
+      const links = [...document.querySelectorAll('.project-detail-sidebar nav a')];
+      document.querySelectorAll('.project-detail-media img').forEach((image) => {
+        image.addEventListener('error', () => {
+          image.setAttribute('hidden', '');
+          image.parentElement?.querySelector('.project-detail-media-placeholder')?.removeAttribute('hidden');
+        });
+      });
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          links.forEach((link) => link.classList.toggle('is-active', link.getAttribute('href') === `#${entry.target.id}`));
+        });
+      }, { rootMargin: '-80px 0px -65% 0px' });
+      sections.forEach((section) => observer.observe(section));
+  </script>

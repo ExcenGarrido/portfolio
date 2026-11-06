@@ -1,0 +1,30 @@
+---
+import '@fontsource-variable/inter';
+import '../styles/global.css';
+import { t, getAlternateUrl, type Lang } from '../i18n/utils';
+const { lang = 'es' as Lang, ogImage } = Astro.props;
+const title = t(lang, 'metaTitle');
+const description = t(lang, 'metaDescription');
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
+const alternateEs = new URL(getAlternateUrl(Astro.url, 'es'), Astro.site);
+const alternateEn = new URL(getAlternateUrl(Astro.url, 'en'), Astro.site);
+---
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
+    <link rel="alternate" hreflang="es" href={alternateEs} />
+    <link rel="alternate" hreflang="en" href={alternateEn} />
+    <link rel="alternate" hreflang="x-default" href={alternateEs} />
+    <meta property="og:title" content={title} /><meta property="og:description" content={description} /><meta property="og:type" content="website" /><meta property="og:url" content={canonicalUrl} />
+    <meta property="og:locale" content={t(lang, 'locale')} />
+    <meta property="og:locale:alternate" content={lang === 'es' ? 'en_US' : 'es_AR'} />
+    {ogImage && <meta property="og:image" content={new URL(ogImage, Astro.site)} />}
+    <meta name="twitter:card" content="summary" /><meta name="theme-color" content="#101313" />
+    <title>{title}</title>
+  </head>
+  <body><slot /></body>
+</html>

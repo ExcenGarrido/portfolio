@@ -1,0 +1,93 @@
+---
+import { t, type Lang } from '../i18n/utils';
+const { lang = 'es' as Lang } = Astro.props;
+const projectPrefix = lang === 'en' ? '/en/projects/' : '/proyectos/';
+---
+<section id="proyectos" class="selected-projects" aria-labelledby="projects-title" data-screenshot-pending={t(lang, 'screenshotPending')}>
+  <div class="selected-projects-heading">
+    <div>
+      <p class="selected-projects-eyebrow">{t(lang, 'projectsEyebrow')}</p>
+      <h2 id="projects-title">{t(lang, 'projectsTitle')}</h2>
+    </div>
+    <p class="selected-projects-intro">{t(lang, 'projectsIntro')}</p>
+  </div>
+
+  <!-- TODO: activar cuando haya 5+ proyectos
+  <div class="project-filters" role="tablist" aria-label="Filtrar proyectos">
+    <button role="tab">Todos</button>
+    <button role="tab">Backend</button>
+    <button role="tab">Inteligencia artificial</button>
+  </div>
+  -->
+
+  <div class="selected-projects-grid">
+    <a class="selected-project-card" href={`${projectPrefix}automatizacion-facturas-ia/`}>
+      <div class="project-image-container project-image-facturas">
+        <img class="project-image" src="/projects/facturas-ia.png" alt={t(lang, 'invoiceImageAlt')} width="1600" height="900" decoding="async" />
+      </div>
+      <div class="selected-project-body">
+        <p class="selected-project-eyebrow">{t(lang, 'personalProduction')}</p>
+        <h3>{t(lang, 'invoiceAutomation')}</h3>
+        <div class="selected-project-copy">
+          <p><strong>{t(lang, 'problem')}:</strong> {t(lang, 'invoiceProblem')}</p>
+          <p><strong>{t(lang, 'solution')}:</strong> {t(lang, 'invoiceSolution')}</p>
+          <p><strong>{t(lang, 'result')}:</strong> {t(lang, 'invoiceResult')}</p>
+        </div>
+        <div class="selected-project-tags">
+          <span>Python</span><span>FastAPI</span><span>Pydantic</span><span>Groq</span><span>PostgreSQL</span><span>SQLAlchemy</span><span>n8n</span><span>Azure</span><span>GitHub Actions</span>
+        </div>
+        <span class="selected-project-link">{t(lang, 'caseStudy')} →</span>
+      </div>
+    </a>
+
+    <a class="selected-project-card" href={`${projectPrefix}procesamiento-documentos-ia/`}>
+      <div class="project-image-container project-image-idp">
+        <img class="project-image" src="/projects/idp-neon.png" alt={t(lang, 'documentImageAlt')} width="1600" height="900" decoding="async" />
+      </div>
+      <div class="selected-project-body">
+        <p class="selected-project-eyebrow">{t(lang, 'personalAzureDemo')}</p>
+        <h3>{t(lang, 'documentProcessing')}</h3>
+        <div class="selected-project-copy">
+          <p><strong>{t(lang, 'problem')}:</strong> {t(lang, 'documentProblem')}</p>
+          <p><strong>{t(lang, 'solution')}:</strong> {t(lang, 'documentSolution')}</p>
+          <p><strong>{t(lang, 'result')}:</strong> {t(lang, 'documentResult')}</p>
+        </div>
+        <div class="selected-project-tags">
+          <span>Python</span><span>FastAPI</span><span>Docker</span><span>PostgreSQL</span><span>Groq</span><span>n8n</span><span>Azure</span>
+        </div>
+        <span class="selected-project-link">{t(lang, 'caseStudy')} →</span>
+      </div>
+    </a>
+
+    <a class="selected-project-card" data-category={t(lang, 'backendWeb')} href={`${projectPrefix}fichero-online/`}>
+      <div class="project-image-container project-image-fichero">
+        <img class="project-image" src="/projects/fichero-online.png" alt={t(lang, 'ficheroImageAlt')} width="900" height="1600" decoding="async" />
+        <span class="project-image-badge">{t(lang, 'testData')}</span>
+      </div>
+      <div class="selected-project-body">
+        <p class="selected-project-eyebrow">{t(lang, 'ficheroAcademic')}</p>
+        <h3>{t(lang, 'ficheroTitle')}</h3>
+        <div class="selected-project-copy">
+          <p><strong>{t(lang, 'problem')}:</strong> {t(lang, 'ficheroProblem')}</p>
+          <p><strong>{t(lang, 'solution')}:</strong> {t(lang, 'ficheroSolution')}</p>
+          <!-- TODO: completar con dato real -->
+        </div>
+        <div class="selected-project-tags">
+          <span>PHP 8.2+</span><span>MySQL/MariaDB</span><span>PDO</span><span>JavaScript vanilla</span><span>Bootstrap</span><span>Composer</span><span>Dompdf</span><span>Endroid QR Code</span>
+        </div>
+        <span class="selected-project-link">{t(lang, 'caseStudy')} →</span>
+      </div>
+    </a>
+  </div>
+</section>
+<script>
+  document.querySelectorAll<HTMLImageElement>('.project-image').forEach((image) => {
+    image.addEventListener('error', () => {
+      image.hidden = true;
+      const placeholder = document.createElement('div');
+      placeholder.className = 'project-image-placeholder';
+      placeholder.textContent = image.closest<HTMLElement>('.selected-projects')?.dataset.screenshotPending ?? '';
+      image.parentElement?.append(placeholder);
+    }, { once: true });
+  });
+</script>

@@ -1,0 +1,42 @@
+---
+import { t, type Lang } from '../i18n/utils';
+import SocialIcon from './SocialIcon.astro';
+const { lang = 'es' as Lang } = Astro.props;
+---
+<section id="contacto" class="contact-section" aria-labelledby="contact-title">
+  <p class="contact-eyebrow">{t(lang, 'contactEyebrow')}</p>
+  <h2 id="contact-title">{t(lang, 'contactTitle')}</h2>
+  <p class="contact-description">{t(lang, 'contactDescription')}</p>
+  <ul class="contact-points">
+    <li><svg aria-hidden="true" viewBox="0 0 16 16"><circle cx="8" cy="8" r="6.5" /><path d="m5 8 2 2 4-4" /></svg>{t(lang, 'noJargon')}</li>
+    <li><svg aria-hidden="true" viewBox="0 0 16 16"><circle cx="8" cy="8" r="6.5" /><path d="m5 8 2 2 4-4" /></svg>{t(lang, 'businessFocus')}</li>
+    <li><svg aria-hidden="true" viewBox="0 0 16 16"><circle cx="8" cy="8" r="6.5" /><path d="m5 8 2 2 4-4" /></svg>{t(lang, 'personalReply')}</li>
+  </ul>
+  <a class="btn-primario" href="mailto:pabloagustingarrido@gmail.com">{t(lang, 'writeByEmail')} <span aria-hidden="true" class="btn-arrow">→</span></a>
+
+  <div class="direct-channel">
+    <p class="direct-eyebrow">{t(lang, 'directChannel')}</p>
+    <a class="direct-email" href="mailto:pabloagustingarrido@gmail.com">pabloagustingarrido@gmail.com</a>
+    <p class="direct-location">{t(lang, 'directLocation')}</p>
+    <button class="copy-email" type="button" aria-live="polite" data-copied={t(lang, 'copied')} data-copy-label={t(lang, 'copyEmail')}>{t(lang, 'copyEmailInitial')}</button>
+    <div class="direct-links">
+      <a data-key="linkedin" class="flex items-center gap-2 text-gray-400 hover:text-white transition-colors" href="https://www.linkedin.com/in/pablo-agustin-garrido/" target="_blank" rel="noopener noreferrer">
+        <SocialIcon name="linkedin" size={20} />
+        LinkedIn
+      </a>
+      <a data-key="github" class="flex items-center gap-2 text-gray-400 hover:text-white transition-colors" href="https://github.com/ExcenGarrido" target="_blank" rel="noopener noreferrer">
+        <SocialIcon name="github" size={20} />
+        GitHub
+      </a>
+    </div>
+  </div>
+</section>
+<script>
+  const copyButton = document.querySelector('.copy-email');
+  copyButton?.addEventListener('click', async () => {
+    await navigator.clipboard.writeText('pabloagustingarrido@gmail.com');
+    const button = copyButton as HTMLButtonElement;
+    button.textContent = button.dataset.copied ?? '';
+    window.setTimeout(() => { button.textContent = button.dataset.copyLabel ?? ''; }, 2000);
+  });
+</script>

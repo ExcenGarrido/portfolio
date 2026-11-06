@@ -1,0 +1,12 @@
+---
+import type { Project } from '../data/projects';
+const { project, index } = Astro.props as { project: Project; index: number };
+---
+<article class="project-card">
+  <div class="project-top"><span class="project-number">0{index + 1}</span><span class="project-kicker">{project.kicker}</span></div>
+  <h3>{project.title}</h3><p class="project-summary">{project.summary}</p><p>{project.description}</p>
+  <ul class="outcomes">{project.outcomes.map((item) => <li>{item}</li>)}</ul>
+  <div class="tags">{project.stack.map((item) => <span>{item}</span>)}</div>
+  <div class="project-links">{project.repoUrl && <a href={project.repoUrl} target="_blank" rel="noopener noreferrer">Repositorio ↗</a>}{project.demoUrl && <a href={project.demoUrl} target="_blank" rel="noopener noreferrer">Demo / API ↗</a>}</div>
+  {project.editableNotes && <small class="note">Nota editable: {project.editableNotes}</small>}
+</article>
