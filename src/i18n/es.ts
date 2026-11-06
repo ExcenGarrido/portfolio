@@ -1,6 +1,6 @@
 export const es: Record<string, string> = {
-  metaTitle: 'Pablo Dev Garrido — Backend Developer & AI Engineer',
-  metaDescription: 'Portfolio de Pablo Dev Garrido, especialista en backend, automatización e Ingeniería de IA.',
+  metaTitle: 'Pablo Dev Garrido — Backend Developer · Enfocado en IA y Automatización',
+  metaDescription: 'Portafolio de Pablo Dev Garrido: sistemas backend, pipelines de datos con IA y automatización. Python, FastAPI, PostgreSQL y n8n.',
   locale: 'es_AR',
   languageLabel: 'Idioma',
   spanishVersion: 'Versión en español',

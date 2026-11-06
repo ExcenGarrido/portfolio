@@ -1,8 +1,8 @@
 import type { Dictionary } from './es';
 
 export const en: Partial<Dictionary> = {
-  metaTitle: 'Pablo Dev Garrido — Backend Developer & AI Engineer',
-  metaDescription: 'Portfolio of Pablo Dev Garrido, specializing in backend development, automation, and AI engineering.',
+  metaTitle: 'Pablo Dev Garrido — Backend Developer · Focused on AI and Automation',
+  metaDescription: 'Portfolio of Pablo Dev Garrido: backend systems, AI data pipelines and automation. Python, FastAPI, PostgreSQL and n8n.',
   locale: 'en_US',
   languageLabel: 'Language',
   spanishVersion: 'Versión en español',
