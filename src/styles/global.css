@@ -1002,3 +1002,6 @@ body{
     white-space:normal;
   }
 }
+.brand { display: inline-flex; align-items: center; gap: 10px; }
+.brand-logo { display: block; width: 46px; height: 36px; object-fit: contain; flex: none; }
+.footer-logo { display: block; width: 126px; height: 100px; object-fit: contain; margin-bottom: 12px; }

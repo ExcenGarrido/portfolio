@@ -5,7 +5,7 @@ const { lang = 'es' } = Astro.props;
 const prefix = lang === 'en' ? '/en/' : '/';
 ---
 <header class="site-header" data-detail-page={detailPage ? 'true' : 'false'}>
-  <a class="brand" href={`${prefix}#inicio`} aria-label="Pablo Dev Garrido, inicio"><strong>Pablo <em>Dev</em> Garrido</strong><span><i class="brand-separator" aria-hidden="true"></i><b>{t(lang, 'portfolio')}</b></span></a>
+  <a class="brand" href={`${prefix}#inicio`} aria-label="Pablo Dev Garrido, inicio"><img src="/logo-pg-header.png" alt="" width="46" height="36" class="brand-logo" /><strong>Pablo <em>Dev</em> Garrido</strong><span><i class="brand-separator" aria-hidden="true"></i><b>{t(lang, 'portfolio')}</b></span></a>
   <button class="menu-button" aria-expanded="false" aria-controls="primary-nav">{t(lang as Lang, 'menu')} <span aria-hidden="true">↗</span></button>
   <nav id="primary-nav" aria-label="Navegación principal">
     <div class="nav-links"><a class="nav-link" href={`${prefix}#impacto`}>{t(lang, 'navImpact')}</a><a class="nav-link" href={`${prefix}#proyectos`}>{t(lang, 'navProjects')}</a><a class="nav-link" href={`${prefix}#enfoque`}>{t(lang, 'navApproach')}</a><a class="nav-link" href={`${prefix}#sobre-mi`}>{t(lang, 'navAbout')}</a><a class="nav-link" href={`${prefix}#contacto`}>{t(lang, 'navContact')}</a></div>
