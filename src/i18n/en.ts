@@ -174,7 +174,7 @@ export const en: Partial<Dictionary> = {
   ,spanish: 'Spanish'
   ,nativeLevel: 'Native'
   ,englishLanguage: 'English'
-  ,b2: 'B2'
+  ,b2: 'B1'
   ,projectLink: 'View the project'
   ,invoiceImageAlt: 'Swagger for the invoice API deployed on Azure, showing the JSON response with data extracted by the LLM'
   ,documentImageAlt: 'PostgreSQL database in Neon with document analysis stored in JSONB format'

@@ -185,7 +185,7 @@ export const es: Record<string, string> = {
   ,spanish: 'Español'
   ,nativeLevel: 'Nativo'
   ,englishLanguage: 'Ingles'
-  ,b2: 'B2'
+  ,b2: 'B1'
   ,projectLink: 'Ver el proyecto'
   ,invoiceImageAlt: 'Swagger de la API de facturas desplegada en Azure, con la respuesta en JSON de los datos extraídos por el LLM'
   ,documentImageAlt: 'Base de datos PostgreSQL en Neon con el análisis de documentos guardado en formato JSONB'
