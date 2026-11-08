@@ -1005,3 +1005,10 @@ body{
 .brand { display: inline-flex; align-items: center; gap: 10px; }
 .brand-logo { display: block; width: 46px; height: 36px; object-fit: contain; flex: none; }
 .footer-logo { display: block; width: 126px; height: 100px; object-fit: contain; margin-bottom: 12px; }
+
+.writing-card { display: grid; gap: .5rem; margin-top: 2rem; padding: 1.25rem 1.5rem; background: var(--color-surface); border: 1px solid var(--color-line); border-radius: 12px; }
+.writing-card .writing-eyebrow { font-size: .5625rem; letter-spacing: var(--tracking-widest); color: var(--color-ink-muted); }
+.writing-card h3 { font-size: 1rem; font-weight: 600; color: var(--color-ink); }
+.writing-card p { font-size: .8125rem; line-height: 1.6; color: var(--color-ink-soft); }
+.writing-card a { font-size: .75rem; font-weight: 600; color: var(--color-ink); }
+.writing-card a:hover { text-decoration: underline; }

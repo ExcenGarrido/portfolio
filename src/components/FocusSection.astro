@@ -1,5 +1,6 @@
 ---
 import { t, type Lang } from '../i18n/utils';
+import WritingCard from './WritingCard.astro';
 const { lang = 'es' as Lang } = Astro.props;
 ---
 <section id="enfoque" class="focus-section" aria-labelledby="focus-title">
@@ -35,4 +36,6 @@ const { lang = 'es' as Lang } = Astro.props;
   <p class="focus-closing">{t(lang, 'focusClosing')} <strong>{t(lang, 'focusCostSuffix')}</strong>.</p>
   <!-- TODO: pegar URL del post de LinkedIn -->
   <a class="focus-link" href={lang === 'en' ? '/en/projects/procesamiento-documentos-ia/' : '/proyectos/procesamiento-documentos-ia/'}>{t(lang, 'projectLink')} →</a>
+
+  <WritingCard lang={lang} />
 </section>

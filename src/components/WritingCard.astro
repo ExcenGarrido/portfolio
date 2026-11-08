@@ -1,0 +1,14 @@
+---
+import { t, type Lang } from '../i18n/utils';
+const { lang = 'es' as Lang } = Astro.props;
+---
+<aside class="writing-card">
+  <p class="writing-eyebrow">{t(lang, 'writingEyebrow')}</p>
+  <h3>{t(lang, 'writingTitle')}</h3>
+  <p>{t(lang, 'writingSummary')}</p>
+  <a
+    href="https://www.linkedin.com/feed/update/urn:li:activity:7524979903885406208/"
+    target="_blank"
+    rel="noopener noreferrer"
+  >{t(lang, 'writingCta')}</a>
+</aside>

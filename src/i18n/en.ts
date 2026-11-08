@@ -176,6 +176,10 @@ export const en: Partial<Dictionary> = {
   ,englishLanguage: 'English'
   ,b2: 'B1'
   ,projectLink: 'View the project'
+  ,writingEyebrow: 'ARTICLE · IN SPANISH'
+  ,writingTitle: "The Data Iceberg: why AI isn't magic"
+  ,writingSummary: 'Before plugging in an LLM, data has to be cleaned and structured. I describe the approach I use in my pipelines: extract, clean, and only then analyze with agents.'
+  ,writingCta: 'Read on LinkedIn (in Spanish) →'
   ,invoiceImageAlt: 'Swagger for the invoice API deployed on Azure, showing the JSON response with data extracted by the LLM'
   ,documentImageAlt: 'PostgreSQL database in Neon with document analysis stored in JSONB format'
   ,ficheroImageAlt: 'Fichero Online attendance dashboard with indicators, charts, and daily details'
