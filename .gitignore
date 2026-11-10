@@ -4,3 +4,4 @@ dist/
 .azure/
 .env
 .DS_Store
+.vercel/
