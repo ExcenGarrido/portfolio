@@ -129,7 +129,6 @@ export const POST: APIRoute = async ({ request }) => {
 
   const turnstileSecret = (TURNSTILE_SECRET_KEY || runtimeEnv('TURNSTILE_SECRET_KEY')).trim();
   const turnstileToken = typeof payload.turnstileToken === 'string' ? payload.turnstileToken.trim().slice(0, 2048) : '';
-  console.log('[contact] Turnstile secret presente:', !!turnstileSecret, 'Token presente:', !!turnstileToken);
   if (turnstileSecret !== '' && !PLACEHOLDER_RE.test(turnstileSecret)) {
     if (!turnstileToken) {
       return json({ ok: false, error: 'captcha' }, 400);
